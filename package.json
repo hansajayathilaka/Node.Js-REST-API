@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/hansajayathilaka/Node.Js-REST-API/issues"
   },
-  "homepage": "https://github.com/hansajayathilaka/Node.Js-REST-API#readme"
+  "homepage": "https://github.com/hansajayathilaka/Node.Js-REST-API#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
