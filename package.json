@@ -1,0 +1,19 @@
+{
+  "name": "node-js-rest-api",
+  "version": "1.0.0",
+  "description": "My First RESTful API using Node.Js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hansajayathilaka/Node.Js-REST-API.git"
+  },
+  "author": "Hansa Jayathilaka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hansajayathilaka/Node.Js-REST-API/issues"
+  },
+  "homepage": "https://github.com/hansajayathilaka/Node.Js-REST-API#readme"
+}
