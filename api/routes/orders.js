@@ -3,19 +3,19 @@ const router = express.Router();
 
 router.get('/', (req, res, next) => {
     res.status(200).json({
-        message: 'Products Show.',
+        message: 'Show Orders.',
     });
 });
 
 router.post('/', (req, res, next) => {
     res.status(200).json({
-        message: 'Create Product.',
+        message: 'Make Order.',
     });
 });
 
-router.patch('/:id', (req, res, next) => {
+router.delete('/:id', (req, res, next) => {
     res.status(200).json({
-        message: 'Update Product',
+        message: 'Delete Order.',
         id: req.params.id,
     });
 });
