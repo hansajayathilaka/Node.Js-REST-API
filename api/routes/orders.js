@@ -3,13 +3,18 @@ const router = express.Router();
 
 router.get('/', (req, res, next) => {
     res.status(200).json({
-        message: 'Show Orders.',
+        message: 'Show Orders.'
     });
 });
 
 router.post('/', (req, res, next) => {
-    res.status(200).json({
+    const order = {
+        name: req.body.name,
+        price: req.body.price
+    };
+    res.status(201).json({
         message: 'Make Order.',
+        order: order
     });
 });
 
