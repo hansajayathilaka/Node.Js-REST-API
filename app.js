@@ -8,8 +8,12 @@ const productRouters = require('./api/routes/products');
 const ordersRouters = require('./api/routes/orders');
 
 const pass = process.env.MONGO_ATLES_PASS;
-const url = 'mongodb+srv://Hansa:' + pass + '@hansa-mongodb-avqh4.mongodb.net/test?retryWrites=true&w=majority';
+const db = process.env.MONGO_ATLES_DB;
+const url = 'mongodb+srv://Hansa:' + pass + '@hansa-mongodb-avqh4.mongodb.net/' + db + '?retryWrites=true&w=majority';
 mongoose.connect(url, { useNewUrlParser: true });
+
+// This is for "(node:17874)"
+mongoose.Promise = global.Promise;
 
 app.use(morgan(('dev')));
 

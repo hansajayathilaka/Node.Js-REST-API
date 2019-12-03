@@ -1,5 +1,6 @@
 {
   "env": {
-    "MONGO_ATLES_PASS": "Hansa"
+    "MONGO_ATLES_PASS": "Hansa",
+    "MONGO_ATLES_DB": "node-js-shop"
   }
 }

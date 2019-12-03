@@ -7,11 +7,26 @@ const Product = require('../models/products');
 // View All
 router.get('/', (req, res, next) => {
     Product.find()
+        .select('_id name price')
         .exec()
-        .then(doc => {
-            console.log(doc);
-            if (doc.length > 0) {
-                res.status(200).json(doc);
+        .then(docs => {
+            const response = {
+                count: docs.length,
+                products: docs.map(doc => {
+                    return {
+                        _id: doc._id,
+                        name: doc.name,
+                        price: doc.price,
+                        request: {
+                            type: "GET",
+                            url: "http://127.0.0.1:3000/products/" + doc._id
+                        }
+                    }
+                })
+            };
+            console.log(response);
+            if (docs.length > 0) {
+                res.status(200).json(response);
             } else {
                 res.status(404).json({
                     message: 'No Entry Found'
@@ -35,8 +50,16 @@ router.post('/', (req, res, next) => {
         .then(result =>{
             console.log(result);
             res.status(201).json({
-                message: 'Create Product.',
-                product: product
+                message: 'Product Created Successfully.',
+                product: {
+                    _id: result._id,
+                    name: result.name,
+                    price: result.price,
+                    request: {
+                        type: "GET",
+                        url: "http://127.0.0.1:3000/products/" + result._id
+                    }
+                }
             });
         })
         .catch(err => {
@@ -49,13 +72,22 @@ router.post('/', (req, res, next) => {
 
 // View a Single product
 router.get('/:id', (req, res, next) => {
-    const id = req.params.id;
-    Product.findById(id)
+    const _id = req.params.id;
+    Product.findById(_id)
+        .select('_id name price')
         .exec()
         .then(doc => {
-            console.log("From Database" + doc);
+            const response = {
+                product: doc,
+                request: {
+                    type: "GET",
+                    disc: "Back to all Products.",
+                    url: "http://127.0.0.1:3000/products"
+                }
+            };
+            console.log("From Database" + response);
             if (doc) {
-                res.status(200).json(doc);
+                res.status(200).json(response);
             } else {
                 res.status(404).json({message: 'No valid Entry Found!'});
             }
@@ -67,17 +99,29 @@ router.get('/:id', (req, res, next) => {
 });
 
 // View Update
-router.patch('/:id', (req, res, next) => {
-    const id = req.params.id;
-    // var updateOps = {};
-    // for (const ops in req.body){
-    //     updateOps[ops.propName] = ops.value;
-    // }
-    Product.update({_id: id}, {$set: updateOps})
+router.patch('/:_id', (req, res, next) => {
+    const _id = req.params._id;
+    var updateOps = {};
+
+    req.body.forEach(ops => {
+        updateOps[ops['propName']] = ops['value'];
+    });
+
+    Product.update({_id: _id}, {$set: updateOps})
         .exec()
         .then(result => {
-            console.log(result);
-            res.status(200).json(result);
+            const response ={
+                message: "Product is Updated.",
+                product: {
+                    _id: _id,
+                    request: {
+                        type: "GET",
+                        url: "http://127.0.0.1:3000/products/" + _id
+                    }
+                }
+            };
+            console.log(response);
+            res.status(200).json(response);
         })
         .catch(err => {
             console.log(err);
@@ -86,13 +130,23 @@ router.patch('/:id', (req, res, next) => {
 });
 
 // Delete product
-router.delete('/:id', (req, res, next) => {
-    const id = req.params.id;
-    Product.remove({_id: id})
+router.delete('/:_id', (req, res, next) => {
+    const _id = req.params._id;
+    Product.remove({_id: _id})
         .exec()
         .then(result => {
-            console.log(result);
-            res.status(200).json(result);
+            const response = {
+                message: "Product is Deleted.",
+                product: {
+                    _id: _id,
+                    request: {
+                        type: "GET",
+                        url: "http://127.0.0.1:3000/products/"
+                    }
+                }
+            };
+            console.log(response);
+            res.status(200).json(response);
         })
         .catch(err => {
             console.log(err);
