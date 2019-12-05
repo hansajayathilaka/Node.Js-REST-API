@@ -5,7 +5,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const productRouters = require('./api/routes/products');
-const ordersRouters = require('./api/routes/orders');
+const orderRouters = require('./api/routes/orders');
+const userRouters = require('./api/routes/users');
 
 const pass = process.env.MONGO_ATLES_PASS;
 const db = process.env.MONGO_ATLES_DB;
@@ -44,7 +45,8 @@ app.use((req, res, next) => {
 
 // Routers Which should Handle request
 app.use('/products', productRouters);
-app.use('/orders', ordersRouters);
+app.use('/orders', orderRouters);
+app.use('/users', userRouters);
 
 // 404 Error handler
 app.use((req, res, next) => {

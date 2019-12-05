@@ -1,6 +1,7 @@
 {
   "env": {
     "MONGO_ATLES_PASS": "Hansa",
-    "MONGO_ATLES_DB": "node-js-shop"
+    "MONGO_ATLES_DB": "node-js-shop",
+    "JWT_KEY": "secret"
   }
 }

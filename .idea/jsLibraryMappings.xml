@@ -4,6 +4,7 @@
     <file url="file://$PROJECT_DIR$/api/models/products.js" libraries="{HTTP Response Handler}" />
     <file url="file://$PROJECT_DIR$/api/routes/orders.js" libraries="{HTTP Response Handler}" />
     <file url="file://$PROJECT_DIR$/api/routes/products.js" libraries="{HTTP Response Handler}" />
+    <file url="file://$PROJECT_DIR$/api/routes/users.js" libraries="{HTTP Response Handler}" />
     <file url="file://$PROJECT_DIR$/app.js" libraries="{HTTP Response Handler}" />
   </component>
 </project>
